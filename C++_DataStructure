@@ -1,0 +1,533 @@
+
+
+
+
+INDEX
+                -> Running
+                -> STL  Intro
+                -> Array
+                -> Vectors
+                -> Set
+                    * Associative Container
+                    * Comparator
+                    * Emplace
+                -> MultiSet
+                -> Map
+                    * Sorting Based on values or data
+                    * map<string,vector<int>> mp;
+                    * map<string,set<int>, greater<>> yo;
+                -> MultiMap
+                    * Finding a Value in MultiMap or Map
+                -> Forward List
+                -> List
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################################  Running
+
+    -> g++ -std=c++17 Rough.cpp
+    -> ./a.out
+
+    or 
+
+    -> g++ -std=c++17 Rough.cpp -o <Name>
+    -> ./<Name>
+
+
+
+         
+
+
+
+
+###############################################################################################  
+
+
+
+
+###############################################################################################  STL  Intro
+
+    3 components-:
+        1. container
+        2. iterator
+        3. Algorithm
+
+    #include <funstional> 
+        -> greater<>, less<>
+
+
+
+
+###############################################################################################  
+
+
+
+
+
+
+
+###############################################################################################  Array
+
+   TOPIC: std::array    ->array<int,5> arr
+
+    NOTICE:
+        1. std::array is a container that encapsulates fixed size arrays.
+        2. array size is needed at compile time.
+        3. Assign by value is actually by value.
+        4. Access Elements:
+        a. at()     -> zero based arr.at(3) -> Exception out of bound if index is greater than size
+        b. []       ->   no exception
+        c. front()
+        d. back()
+        e. data() // gives access to the underlying array
+
+    
+    Declare->   array<int,5> arr;
+                array<int,5> arr= {1,2,3,4,5};
+                or array<int,5> arr {1,2,3,4,5};
+
+    Initialize ->
+                array<int,5> arr;
+                arr= {1,2,3,4,5};
+
+
+    arr.fill(10);  
+         
+
+
+
+
+###############################################################################################  
+
+
+
+###############################################################################################   Vectors
+
+        ## FIND
+        auto i2 = find(i1 + 1, num.end(), target);
+                = find( begin position iterator, end position iterator, target value);
+
+        
+        Fast Access + Dynamic;
+        size is known;
+
+        NOTES:
+        1. std::vector is a sequence container and also known as Dynamic Array or Array List.
+        2. Its size can grow and shrink dynamically, and no need to provide size at compile time.
+
+        ELEMENT ACCESS
+        at() (Exception Safe), [], front(), back(), data()
+
+        MODIFIERS:
+        insert(), emplace(), push_back(), emplace_back(), pop_back(), resize(), swap(), erase(), clear(), size(), capacity()
+
+        Declare -:
+        vector<int> arr;
+        vector<int> arr(5,20);
+        vector<int> arr = {1,2,3,4,5};
+        vector<int> arr {1,2,3};
+
+
+        ### For Example
+
+            *** 4*4 is 1
+            vector<vector<int>> yo(4,vector<int> (4,1));
+
+            // For Printing 
+            for(auto i= yo.begin(); i!= yo.end(); ++i){
+                for(auto j= i->begin(); j!= i->end(); ++j){
+                    cout<<*j<<" ";
+                }
+                cout<<endl;
+            }
+
+
+
+
+
+###############################################################################################  
+
+
+
+
+###############################################################################################  Set
+
+   NOTES:
+        1. std::set is an Associative Container that contains a sorted set of unique objects of type Key.
+        2. It is usually implemented using Red-Black Tree.
+        3. Insertion, Removal, Search have logarithmic complexity.
+        4. If we want to store user defined data type in set then we will have to provide 
+        compare function so that set can store them in sorted order.
+        5. We can pass the order of sorting while constructing set object.
+
+    Associative Container -:
+        Set, MultiSet, Map, MultiMap
+
+    BOTTOM LINE:
+        it store unique elements and they are stored in sorted order (A/D)
+
+
+        Example-: 
+        set<int> Set = {1,2,3,1,2,3};   ASC
+        set<int, std::greater<>>          DESC
+        for(const auto& e: Set){
+            cout<< e << endl;
+        }  
+
+        ## Comparator
+        class Person{
+            public:
+                float age;
+                string name;
+            bool operator < (const Person& rhs) const { return age < rhs.age ;}
+            bool operator > (const Person& rhs) const { return age > rhs.age ;} // good practice
+        };
+
+        set<Person> Set = {{30,"Piyush"},{22,"Rupam"},{25,"amit"}};
+        for(const auto& e: Set){
+            cout<< e.age << " "<<e.name << endl;
+        }
+        return 0;
+
+
+        ## Emplace
+
+        TOPIC: Emplace In STL
+
+        1. All the containers supports insert and emplace operation to store data. 
+        2. Emplace is used to construct object in-place and avoids unnecessary copy of objects.
+        3. Insert and Emplace is equal for premetive data types but when we deal with heavy objects
+        we should use emplace if we can for efficiency.
+
+            ## For Exmaple          insert do 2 operation Construct then copy whereas Emplace just Construct.
+
+            class A {
+                public:
+                int x;
+                A(int x=0): x{x} {cout<<"Construct" <<endl;};
+                A(const A& rhs) { x= rhs.x; cout<<"Copy" <<endl; }
+
+            };
+
+            bool operator < (const A& lhs, const A& rhs){
+                return lhs.x < rhs.x;
+            }
+
+            signed main(){
+                ios_base::sync_with_stdio(false);
+                cin.tie(NULL);
+                cout.tie(NULL);
+
+                set<A> Set;
+                
+                A a(10);
+                Set.insert(a);
+                or
+                set.insert(A(10));
+
+            //  Set.emplace(10);
+
+                for( auto & elm: Set){
+                    cout<< elm.x <<endl;
+                }
+
+                return 0;
+
+
+
+############################################################################################### 
+
+
+###############################################################################################  MultiSet
+
+
+        insert -> Mset.insert(20)
+         multiset<int> Mset = {5,2,4,3,2,5};
+         for(const auto& e: Mset){
+             cout<< e <<endl;
+         }
+
+
+        For Example
+            Same as Set kind of 
+         
+
+
+
+
+###############################################################################################  
+
+
+
+###############################################################################################  Map
+
+         NOTES:
+        1. std::map is associative container that store elements in key value combination
+        where key should be unique, otherwise it overrides the previous value.
+        2. It is implement using Self-Balance Binary Search Tree (AVL/Red Black Tree) .
+        3. It store key value pair in sorted order on the basis of key (assending/decending).
+        4. std::map is generally used in Dictionay type problems.
+
+
+        for(auto &e: MapName){
+            cout<< e.first << " " <<e.second <<endl;
+        }
+
+
+
+        ## User-defined
+
+
+
+        ## For Exmaple
+
+            ***      Sorting Based on values or data in map {item -> (key, value)}
+
+            template<typename A, typename B>
+            std::pair<B,A> flip_pair(const std::pair<A,B> &p)
+            {
+                return std::pair<B,A>(p.second, p.first);
+            }
+
+            template<typename A, typename B>
+            std::multimap<B,A> flip_map(const std::map<A,B> &src)
+            {
+                std::multimap<B,A> dst;
+                std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), 
+                            flip_pair<A,B>);
+                return dst;
+            }
+
+
+            signed main(){
+                map<int,int> yo;
+
+                yo[23]=3;
+                yo[25]=1;
+
+                multimap<int,int> dst = flip_map(yo);
+
+
+                for(const auto& e: yo){
+                    cout<< e.first << " "<< e.second <<endl; 
+                }
+                cout<<endl;
+
+                for(const auto& e: dst){
+                    cout<< e.first << " "<< e.second <<endl; 
+                }
+            }
+
+
+            output ->
+
+                23 3
+                25 1
+
+                1 25
+                3 23
+
+
+             or 
+
+             copy the map in vector in pair, sort it and show 
+             https://www.techiedelight.com/sort-map-values-cpp/
+
+             **              map<string,vector<int>> mp;
+
+                map<string,vector<int>, greater<>> yo;
+                yo["amit"].push_back(10);
+                yo["amit"].push_back(20);
+                yo["bhiswa"].push_back(100);
+                yo["chotu"].push_back(2000);
+                yo["chotu"].push_back(1000);
+                yo["chotu"].push_back(5000);
+                
+                for(auto &e1: yo){
+                    cout<<e1.first<<" : ";
+                    for(auto &e2: e1.second){
+                        cout<<e2<<" ";
+                    }
+                    cout<<endl;
+                }
+
+              **                map<string,set<int>, greater<>> yo;        
+
+                    map<string,set<int>, greater<>> yo;
+                    yo["amit"].insert(10);
+                    yo["amit"].insert(20);
+                    yo["bhiswa"].insert(100);
+                    yo["chotu"].insert(2000);
+                    yo["chotu"].insert(1000);
+                    yo["chotu"].insert(5000);
+                    
+                    for(auto &e1: yo){
+                        cout<<e1.first<<" : ";
+                        for(auto &e2: e1.second){
+                            cout<<e2<<" ";
+                        }
+                        cout<<endl;
+                    }
+
+
+###############################################################################################  
+
+
+###############################################################################################  MultiMap
+
+         Lower_bound() as the first value in the range greater than or equal to the value we need to find. 
+         Upper_bound() gives us the value strictly greater than the value we wish to find in the list.
+
+        NOTES:
+        1. Multimap is an associative container that contains a sorted list of key-value pairs, 
+        while permitting multiple entries with the same key.
+        2. It store key value pair in sorted order on the basis of key (assending/decending).
+        3. Data structure used in multimap is not defined by standard, but red-black tree is assumed by most of the people.
+        
+        4. Lookup: 
+        count, 
+        find, 
+        contains, 
+        equal_range, 
+        lower_bound, 
+        upper_bound
+        
+        
+        5. We dont have at() and [] functions to get element like we had in std::map.
+
+
+
+        For Exmaple
+
+        **          Basic 
+
+            multimap<char,int> Mmap;
+            Mmap.insert(make_pair('a',1));
+            Mmap.insert(make_pair('b',2));
+            Mmap.insert(make_pair('c',3));
+
+            iteralling all is same as Map
+
+            auto range = Mmap.equal_range('a');
+            for(auto i = range.first ; i != range.second ; ++i ){
+                cout<< i-> first << " " << i->second << endl;
+            }
+
+        **          Finding a Value in MultiMap or Map
+
+            auto pair =  Mmap.find('d');
+            if(pair != Mmap.end()){
+                cout<< pair->first << " " << pair->second<<endl;
+            }else{
+                cout<<"Not Found";
+            }
+
+
+
+###############################################################################################  
+
+
+###############################################################################################  Forward List
+
+
+TOPIC: forward_list In STL
+
+1. This is single linked list what we know from C programming language.
+2. Why forward_list why not single_list ?
+3. We should use this class instead of traditional single linked list because
+   a. Well tested
+   b. Bunch of available function
+4. Few Available Operations
+   operator =, assign, front, empty, max_size, clear, insert_after, emplace_after, reverse, sort, merge
+   splice_after, unique, remove, remove_if, resize
+
+
+    forward_list<int> list1 = {5,4,6,2};
+    forward_list<int> list2 = {7,6,1,9};
+    list1.insert_after(list1.begin(),8);    -> 5 8 4 6 2
+    list1.reverse();
+
+    // before merge sort both lists NOT NECESSARY
+    list1.sort();
+    list2.sort();
+
+    list1.merge(list2);
+
+
+    list1.splice_after(list1.begin(), list2);   -> 5 7 6 1 9 4 6 2
+
+    ## unique (remove the consecutive duplicate values)
+
+    5 4 6 2 2
+    list1.unique() -> 5 4 6 2
+
+    5 2 4 6 2
+    list1.unique() -> 5 2 4 6 2
+
+    ## remove (remove all values provided)
+    5 2 4 6 2
+    list1.remove(2) -> 5 4 6 
+
+
+    ## remove_if 
+         list1.remove_if([] (int n){
+             return n>4;
+         });
+
+    ## resize 
+        5 2 4 6 2
+
+        list1.resize(1); -> 5 2 
+        list1.resize(7); -> 5 2 4 6 2 0 0 
+        
+
+###############################################################################################  
+
+
+###############################################################################################  List
+    TOPIC: list In STL
+
+    1. This is double linked list what we know from C prgramming language.
+    2. List is sequence container that allow non-contiguous memory allocation.
+    3. List is faster compared to other sequence containers (vector, forward_list, deque) in terms of 
+    insertion, removal and moving elements in any position provided we have the iterator of the position. 
+    4. We should use this class instead of traditional double linked list because
+    a. Well tested
+    b. Bunch of available function
+    5. Few Available Operations
+    operator =, assign, front, back, empty, size, max_size, clear, insert, emplace, push_back, pop_back, push_front
+    pop_front, reverse, sort, merge, splice, unique, remove, remove_if, resize.
+
+
+    
+############################################################################################### 
+
+###############################################################################################  Rough
+
+###############################################################################################  
