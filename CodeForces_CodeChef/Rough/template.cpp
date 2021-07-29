@@ -16,7 +16,7 @@ typedef pair<long long,long long> pll;
 #define pb(a) push_back(a)
 #define mp(asd,fgh) make_pair(asd,fgh)
 #define all(c) c.begin(),c.end()
-#define check_ cout<<"yo";
+#define check_ cout<<"yo\n";
 
 #define FILE_READ_IN freopen("input.txt","r",stdin);
 #define FILE_READ_OUT freopen("output.txt","w",stdout);
@@ -41,6 +41,12 @@ signed main() {
 
     //######################
 
+    int testCase;
+    cin>>testCase;
+
+    while(testCase--){
+        
+    }
    
     
 }
