@@ -44,10 +44,13 @@ signed main() {
     //######################
 
     ll testCase;
-    cin>>testCase;
-
+    testCase=4;
+    int n=3;
     while(testCase--){
-    
+        cout<<n<<" ";
+        n+=1;
+        if(n==4)
+        n=0;
     }
     
 }

@@ -1,4 +1,4 @@
-//
+//https://www.codechef.com/LTIME98B/problems/BUTYPAIR/
 
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -47,7 +47,28 @@ signed main() {
     cin>>testCase;
 
     while(testCase--){
-    
+      
+      ll n;
+      cin>>n;
+
+      vector<ll> arr(n);
+
+      map<ll,ll> freq;
+      for(int i=0;i<n;i++){
+        cin>>arr[i];
+        freq[arr[i]]+=1;
+      }
+      
+      ll past=0;
+      ll sol =0;
+      auto itr = freq.begin();
+      while(itr != freq.end()){
+        sol += 2* freq[itr->first] * past;
+        past+=freq[itr->first];
+        itr++;
+      }
+      cout<<sol;br;
+
     }
     
 }
