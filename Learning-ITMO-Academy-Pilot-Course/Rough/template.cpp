@@ -30,8 +30,63 @@ const int MV = 1e5+1;
 
 // ##################################################################
 
+struct _stack{
+    vector<ll> s,smin = {LLONG_MAX},smax = {LLONG_MIN};
+
+    void _push(ll x){
+        s.push_back(x);
+     //   cout<<min(smin.back(), x);br;
+        smin.push_back(min(smin.back(), x));
+        smax.push_back(max(smax.back(), x));
+    }
+
+    ll _pop(){
+        ll res = s.back();
+        s.pop_back();
+        smin.pop_back();
+        smax.pop_back();
+        return res;
+    }
+
+    bool _empty(){
+        return s.empty();
+    }
+
+    ll _min(){
+        return smin.back();
+    }
+
+    ll _max(){
+        return smax.back();
+    }
+};
+
+_stack s1, s2;
+
+void add(ll x){
+  //  cout<<x<<" ";
+    s2._push(x);
+}
+
+void remove(){
+    if(s1._empty()){
+        while(!s2._empty()){
+            s1._push(s2._pop());
+        }
+    }
+    cout<<s1._pop();br;
+}
 
 
+ll k;
+
+bool good(){
+    ll mn = min(s1._min(), s2._min());
+    ll mx = max(s1._max(), s2._max());
+
+    cout<<mx<<" "<<mn;br;
+    return mx-mn <=k ;
+}
 
 signed main() {
     ios_base::sync_with_stdio(false);
@@ -43,8 +98,12 @@ signed main() {
 
     //######################
 
-    int n;
-    cin>>n;
+    ll n= INT64_MAX;
+    ll m= LONG_MAX;
+    cout<<m;br;
+    cout<<n;br;
+
+    cout<<to_string(n).size();
 
     
 
