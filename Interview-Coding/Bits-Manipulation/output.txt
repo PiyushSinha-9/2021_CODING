@@ -1,0 +1,2 @@
+cNo of strings with given prefix = 2
+No of strings with given prefix = 4

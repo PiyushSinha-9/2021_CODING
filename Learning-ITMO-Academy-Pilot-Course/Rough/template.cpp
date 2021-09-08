@@ -1,4 +1,4 @@
-//https://codeforces.com/edu/course/2/lesson/9/2/practice/contest/307093/problem/F
+
 
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -29,64 +29,24 @@ const int MV = 1e5+1;
 #pragma GCC target("popcnt")
 
 // ##################################################################
+//dfs(1, adj ,vis, visted);
 
-struct _stack{
-    vector<ll> s,smin = {LLONG_MAX},smax = {LLONG_MIN};
+vector<ll> adj[10100];
+vector<ll> vis(10100);
+vector<ll> sol;
 
-    void _push(ll x){
-        s.push_back(x);
-     //   cout<<min(smin.back(), x);br;
-        smin.push_back(min(smin.back(), x));
-        smax.push_back(max(smax.back(), x));
-    }
-
-    ll _pop(){
-        ll res = s.back();
-        s.pop_back();
-        smin.pop_back();
-        smax.pop_back();
-        return res;
-    }
-
-    bool _empty(){
-        return s.empty();
-    }
-
-    ll _min(){
-        return smin.back();
-    }
-
-    ll _max(){
-        return smax.back();
-    }
-};
-
-_stack s1, s2;
-
-void add(ll x){
-  //  cout<<x<<" ";
-    s2._push(x);
-}
-
-void remove(){
-    if(s1._empty()){
-        while(!s2._empty()){
-            s1._push(s2._pop());
+void dfs(ll start, ll &visted){
+    vis[start]= 1;
+    visted+=1;
+    sol.pb(start);
+    for(ll i : adj[start]){
+        if(vis[i]==0){
+            dfs(i,visted);
         }
     }
-    cout<<s1._pop();br;
 }
 
 
-ll k;
-
-bool good(){
-    ll mn = min(s1._min(), s2._min());
-    ll mx = max(s1._max(), s2._max());
-
-    cout<<mx<<" "<<mn;br;
-    return mx-mn <=k ;
-}
 
 signed main() {
     ios_base::sync_with_stdio(false);
@@ -98,14 +58,84 @@ signed main() {
 
     //######################
 
-    ll n= INT64_MAX;
-    ll m= LONG_MAX;
-    cout<<m;br;
-    cout<<n;br;
 
-    cout<<to_string(n).size();
+    ll testcase;
+    cin>>testcase;
+    while(testcase--){
+       ll n;
+       cin>>n;
+         vector<ll> in(n+2, 0);
+         vector<ll> tempstart;
 
+         ll tempstartlen=0;
+
+      for(ll i=0;i<n+10;i++){
+          adj[i].clear();
+          vis[i]=0;
+      }
+
+        ll temp;
+       for(ll i=0;i<n;i++){
+           cin>>temp;
+           if(temp==0){
+               adj[i+1].pb(n+1);
+               in[n+1]+=1;
+           }else{
+               adj[n+1].pb(i+1);
+               in[i+1]+=1;
+           }
+       }
+
+       for(ll i=0;i<n-1;i++){
+           adj[i+1].pb(i+2);
+           in[i+2]+=1;
+       }
+
+        ll start;
+       // vector<ll> in(n+2, 0);
+
+       // vector<ll> tempstart;
+        for(ll i=1;i<n+2;i++){
+            if(in[i]==0){
+                tempstart.pb(i);
+                tempstartlen+=1;
+
+                if(tempstartlen>1){
+                    break;
+                }
+             //   cout<<i<<" ";
+            }
+        }
+
+        //br;
+
+        if(tempstartlen>1){
+            cout<<-1;br;
+           // check_;
+            continue;
+        }
+
+        ll starting;
+        if(tempstartlen==1){
+            starting=tempstart[0];
+        }
+        else{
+            starting=1;
+        }
+
+        ll visted=0;
+        sol.clear();
+       dfs(starting , visted);
+ 
+       if(visted==n+1){
+           for(auto i: sol){
+               cout<<i<<" ";
+           }
+       }else{
+           cout<<-1;
+       }
+       br;
+    }
     
-
     return 0;
 }
