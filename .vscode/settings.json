@@ -6,6 +6,8 @@
         "iostream": "cpp",
         "ios": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "__tuple": "cpp",
+        "array": "cpp"
     }
 }
