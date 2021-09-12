@@ -1,4 +1,3 @@
-// Inorder + Preorder = tree
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -31,7 +30,42 @@ typedef pair<long long,long long> pll;
 
 #pragma GCC target("popcnt")
 
-//#####################################################################################################
+//############################################################
+
+void displayStack(stack<int> temp){
+    while(!temp.empty()){
+        cout<<temp.top()<<" ";
+        temp.pop();
+    }
+    br;
+}
+
+
+void placeAtBottom(stack<int> &temp, int val){
+    if(temp.empty()){
+        temp.push(val);
+        return;
+    }
+
+    int top = temp.top();
+    temp.pop();
+    placeAtBottom(temp,val);
+    temp.push(top);
+}
+
+
+void reverseSta(stack<int> &temp){
+    if(temp.empty()){
+        return;
+    }
+
+    int up = temp.top();
+    temp.pop();
+    reverseSta(temp);
+    placeAtBottom(temp,up);
+
+}
+
 
 
 signed main() {
@@ -42,24 +76,21 @@ signed main() {
     #endif
 
     //######################
+
     int n;
     cin>>n;
-    
-    vector<int> preorder(n);
-    vector<int> inorder(n);
 
-    rep(i,n){
-        cin>>preorder[i];
+    stack<int> sta;
+    int temp;
+
+    for(int i=0;i<n;i++){
+        cin>>temp;
+        sta.push(temp);
     }
 
-    rep(i,n){
-        cin>>inorder[i];
-    }
+    displayStack(sta);
+    reverseSta(sta);
+    displayStack(sta);
 
 
-    
 }
-
-
-
-

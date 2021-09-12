@@ -1,4 +1,3 @@
-// Inorder + Preorder = tree
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -31,7 +30,7 @@ typedef pair<long long,long long> pll;
 
 #pragma GCC target("popcnt")
 
-//#####################################################################################################
+//############################################################
 
 
 signed main() {
@@ -42,24 +41,45 @@ signed main() {
     #endif
 
     //######################
-    int n;
-    cin>>n;
-    
-    vector<int> preorder(n);
-    vector<int> inorder(n);
 
-    rep(i,n){
-        cin>>preorder[i];
+    int n,k;
+    cin>>n>>k;
+
+    vector<int> arr(n);
+
+    for(int &i: arr){
+        cin>>i;
     }
 
-    rep(i,n){
-        cin>>inorder[i];
+    deque<int> q;
+    vector<int> ans;
+
+    for(int i=0;i<k;i++)
+    {
+        while(!q.empty() and arr[q.back()] < arr[i]){
+            q.pop_back();
+        }
+        q.push_back(i);
+    }
+
+    ans.push_back(arr[q.front()]);
+
+    for(int i=k;i<n;i++){
+        if(q.front() == i-k){
+            q.pop_front();
+        }
+
+        while(!q.empty() and arr[q.back()] < arr[i]){
+            q.pop_back();
+        }
+        q.push_back(i);
+        ans.push_back(arr[q.front()]);
     }
 
 
-    
+    for(int i: ans){
+        cout<<i<<" ";
+    }
+    br;
+
 }
-
-
-
-

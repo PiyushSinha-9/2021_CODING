@@ -1,4 +1,3 @@
-// Inorder + Preorder = tree
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -31,7 +30,30 @@ typedef pair<long long,long long> pll;
 
 #pragma GCC target("popcnt")
 
-//#####################################################################################################
+//############################################################
+
+
+void reserveSen(string a){
+    stack<string> sta;
+    string s="";
+
+    for(char i:a){
+        if(i==' '){
+            sta.push(s);
+            s="";
+            continue;
+        }
+        s+=i;
+    }
+    if(!s.empty()){
+        sta.push(s);
+    }
+
+    while(!sta.empty()){
+        cout<<sta.top()<<" ";
+        sta.pop();
+    }
+}
 
 
 signed main() {
@@ -42,24 +64,13 @@ signed main() {
     #endif
 
     //######################
-    int n;
-    cin>>n;
-    
-    vector<int> preorder(n);
-    vector<int> inorder(n);
 
-    rep(i,n){
-        cin>>preorder[i];
-    }
+    string a;
+    getline(cin,a);
 
-    rep(i,n){
-        cin>>inorder[i];
-    }
+    reserveSen(a);
 
 
-    
+
+
 }
-
-
-
-
