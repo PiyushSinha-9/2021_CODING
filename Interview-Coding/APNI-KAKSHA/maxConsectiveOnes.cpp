@@ -33,51 +33,26 @@ typedef pair<long long,long long> pll;
 //############################################################
 
 
-int bruteSolve(vector<int> arr,int n){          /// Wrong BRUTE Approach MAN
-    int ans=0, len=arr.size();
+int solve(vector<int> arr, int n,int k){
+    int zeroCount=0, left=0, sol=0;
 
     for(int i=0;i<n;i++){
-        int minh = INT_MAX;
-        for(int j=i;j<n;j++){
-            minh=min(minh,arr[i]);
-            int size = j-i+1;
-            ans=max(ans,len*minh);
+        if(arr[i]==0){
+            zeroCount+=1;
         }
-    }
 
-    return ans;
-}
-
-
-
-int solve(vector<int> arr, int n){
-    stack<int> sta;  // storing Indexs
-    int sol =-1;
-
-    arr.push_back(0);       // to not handle stack after while loop 
-    
-    int ans=0;
-    int i=0;
-    while(i<n){
-        while(!sta.empty() and arr[sta.top()] > arr[i]){
-            int t = sta.top();
-            int h = arr[t];
-            sta.pop();
-
-            if(sta.empty()){
-                ans = max(ans, h*i);
-            }else{
-                int len=i-sta.top() - 1;
-                ans = max(ans,h*len);
+        while(zeroCount>k){
+            if(arr[left]==0){
+                zeroCount-=1;
             }
+            left+=1;
         }
-        sta.push(i);
-        i+=1;
+
+        sol=max(sol,i-left+1);
+
     }
-
-    return ans;
+    return sol;
 }
-
 
 signed main() {
     fast
@@ -88,14 +63,15 @@ signed main() {
 
     //######################
 
-    int n;
-    cin>> n;
+    int n,k;
+    cin>>n>>k;
 
     vector<int> arr(n);
 
-    for(int &i:arr){
+    for(int &i: arr){
         cin>>i;
     }
 
-    cout<<solve(arr,n);
+    cout<<solve(arr,n,k);
+
 }
