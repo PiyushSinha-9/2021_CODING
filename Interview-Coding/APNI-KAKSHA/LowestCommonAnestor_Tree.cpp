@@ -74,20 +74,9 @@ void inorder(binaryTree *root){
     inorder(root->right);
 }
 
-void rightView(binaryTree *root, int &maxHeight ,int height=0){   // We can solve it using the Queue also Print when in level order i==n-1
-    if(!root){
-        return;
-    }
 
-    if(height > maxHeight){
-        cout<<root->data<<" ";
-        maxHeight = height;
-    }
-
+int lowComAns(binaryTree *root, int n1,int n2){
     
-    rightView(root->right, maxHeight, height+1);
-    rightView(root->left, maxHeight, height+1);
-
 }
 
 
@@ -106,11 +95,14 @@ signed main() {
     bt->right = new binaryTree(3);
     bt->left->left = new binaryTree(4);
     bt->left->right = new binaryTree(5);
-    // bt->right->left = new binaryTree(6);
-    // bt->right->right = new binaryTree(7);
+    bt->right->left = new binaryTree(6);
+    bt->right->right = new binaryTree(7);
 
-    int maxH =-1;
-    rightView(bt,maxH); // or leftView 
+    cout<<lowComAns(bt, 6, 7);br;
+    cout<<lowComAns(bt, 16, 4);br;
+    cout<<lowComAns(bt,16 , 7);br;
+    cout<<lowComAns(bt,5,6);
+
 
    
     

@@ -74,20 +74,91 @@ void inorder(binaryTree *root){
     inorder(root->right);
 }
 
-void rightView(binaryTree *root, int &maxHeight ,int height=0){   // We can solve it using the Queue also Print when in level order i==n-1
+
+int countNodes(binaryTree *root){
     if(!root){
+        return 0;
+    }
+
+    int left = countNodes(root->left);
+    int right = countNodes(root->right);
+
+    return left +right + 1;
+}
+
+
+void subTreeSum(binaryTree *root, int &sum ){
+    if(!root){
+        sum=0;
         return;
     }
 
-    if(height > maxHeight){
-        cout<<root->data<<" ";
-        maxHeight = height;
+    int lsum=0, rsum=0;
+    subTreeSum(root->left, lsum);
+    subTreeSum(root->right, rsum);
+
+    root->data += (lsum +rsum);
+    sum=root->data;
+
+    return;
+
+}
+
+
+int height(binaryTree *root){
+    if(!root){
+        return 0;
     }
 
-    
-    rightView(root->right, maxHeight, height+1);
-    rightView(root->left, maxHeight, height+1);
+    int lhei, rhei;
+    lhei = height(root->left);
+    rhei = height(root->right);
 
+    return max(lhei, rhei) + 1;
+
+}
+
+
+void diameter(binaryTree *root, int &height, int &bestSol){
+    if(!root){
+        height=0;
+        return;
+    }
+
+    int lefth=0, righth=0;
+    diameter(root->left, lefth, bestSol);
+    diameter(root->right, righth, bestSol);
+
+    height = max(lefth,righth) +1;
+    int curDia = lefth + righth + 1; 
+    bestSol = max(curDia, bestSol);
+
+    return;
+}
+
+
+bool heightBal(binaryTree *root, int &height){
+    if(!root){
+        height=0;
+        return true;
+    }
+
+    int lhei = 0 ,rhei =0;
+    
+    if(!heightBal(root->left, lhei)){
+        return false;
+    }
+
+    if(!heightBal(root->right, rhei)){
+        return false;
+    }
+
+    if(abs(lhei - rhei) > 1){
+        return false;
+    }
+
+    height = max(lhei,rhei)+1;
+    return true;
 }
 
 
@@ -109,8 +180,8 @@ signed main() {
     // bt->right->left = new binaryTree(6);
     // bt->right->right = new binaryTree(7);
 
-    int maxH =-1;
-    rightView(bt,maxH); // or leftView 
+    int height=0;
+    cout<<heightBal(bt,height);
 
    
     

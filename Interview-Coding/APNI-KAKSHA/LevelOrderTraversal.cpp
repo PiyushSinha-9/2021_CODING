@@ -74,20 +74,44 @@ void inorder(binaryTree *root){
     inorder(root->right);
 }
 
-void rightView(binaryTree *root, int &maxHeight ,int height=0){   // We can solve it using the Queue also Print when in level order i==n-1
-    if(!root){
-        return;
+
+int levelOrderSum(binaryTree *bt, int k){
+    int sum=0;
+    int curLevel=0;
+    int curLevelEle = 1;
+    int nextLevelEle = 0;
+
+
+    queue<binaryTree *> q;
+    q.push(bt);
+
+    while(!q.empty()){
+        binaryTree *temp = q.front();
+        q.pop();
+
+        if(curLevel == k){
+            sum+=temp->data;
+        }
+
+        if(temp->left != NULL){
+            nextLevelEle+=1;
+            q.push(temp->left);
+        }
+        
+        if(temp->right != NULL){
+            nextLevelEle+=1;
+            q.push(temp->right);
+        }
+
+        curLevelEle-=1;
+        if(curLevelEle==0){
+            curLevelEle=nextLevelEle;
+            nextLevelEle = 0;
+            curLevel += 1;
+        }
     }
 
-    if(height > maxHeight){
-        cout<<root->data<<" ";
-        maxHeight = height;
-    }
-
-    
-    rightView(root->right, maxHeight, height+1);
-    rightView(root->left, maxHeight, height+1);
-
+    return sum;
 }
 
 
@@ -106,12 +130,12 @@ signed main() {
     bt->right = new binaryTree(3);
     bt->left->left = new binaryTree(4);
     bt->left->right = new binaryTree(5);
-    // bt->right->left = new binaryTree(6);
-    // bt->right->right = new binaryTree(7);
+    bt->right->left = new binaryTree(6);
+    bt->right->right = new binaryTree(7);
 
-    int maxH =-1;
-    rightView(bt,maxH); // or leftView 
-
-   
+    int k;
+    cin>>k;
+    cout<<levelOrderSum(bt, k);
+    
     
 }
