@@ -1,4 +1,4 @@
-//BinaryTree Building and traversal
+//Brute + Good Approach
 
 #include <bits/stdc++.h>
 typedef long long ll;
@@ -75,9 +75,80 @@ void inorder(binaryTree *root){
 }
 
 
+bool getPath(binaryTree *root, int val, vector<int> &path){
+    if(!root){
+        return false;
+    }
+
+    path.push_back(root->data);
+    
+    if(root->data==val) 
+        return true;
+
+    if(getPath(root->left,val,path)){
+        return true;
+    }
+
+    if(getPath(root->right,val,path)){
+        return true;
+    }
+
+    path.pop_back();
+    return false;
+
+}
+
+
 int lowComAns(binaryTree *root, int n1,int n2){
     
+    vector<int> lPath, rPath;
+    if(!getPath(root,n1,lPath) or !getPath(root,n2,rPath)){
+        return -1;  // soluion do not exist
+    }
+
+    print(lPath);
+    print(rPath);
+
+    int pc=0;
+    int path1Size = lPath.size();
+    int path2Size = rPath.size();
+    while(pc<path1Size and pc<path2Size){
+        if(lPath[pc]!=rPath[pc]){
+            break;
+        }
+        pc+=1;
+    }
+
+    return lPath[pc-1];
+
 }
+
+
+binaryTree *LCA(binaryTree *root, int n1, int n2){              // n1 and n2 we are prefusing that they both exist
+    if(!root){
+        return NULL;
+    }
+
+    if(root->data==n1 or root->data==n2){
+        return root;
+    }
+
+    binaryTree *lNode = LCA(root->left,n1,n2);
+    binaryTree *rNode = LCA(root->right,n1,n2);
+
+    if(lNode and rNode){
+        return root;
+    }
+
+    if(lNode){
+        return lNode;
+    }
+
+    return rNode;
+
+}
+
+
 
 
 signed main() {
@@ -97,13 +168,74 @@ signed main() {
     bt->left->right = new binaryTree(5);
     bt->right->left = new binaryTree(6);
     bt->right->right = new binaryTree(7);
+    bt->right->left->left = new binaryTree(8);
 
-    cout<<lowComAns(bt, 6, 7);br;
-    cout<<lowComAns(bt, 16, 4);br;
-    cout<<lowComAns(bt,16 , 7);br;
-    cout<<lowComAns(bt,5,6);
+    // cout<<lowComAns(bt, 6, 7);br;
+    // cout<<lowComAns(bt, 6, 4);br;
+    // cout<<lowComAns(bt, 6 , 7);br;
+    // cout<<lowComAns(bt , 5, 6);br;
+    // cout<<lowComAns(bt, 19, 6);br;
+
+    // cout<<lowComAns(bt, 8, 7);br;
+    // cout<<lowComAns(bt, 1, 8);br;
 
 
-   
+    //binaryTree *sol =  LCA(bt, 6, 7);
+    // if(sol!=NULL)
+    //     cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt, 6, 4);
+    // if(sol!=NULL)
+    // cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt, 6 , 7);
+    // if(sol!=NULL)
+    //     cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt , 5, 6); 
+    // if(sol!=NULL)
+    // cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt, 19, 6);
+    // if(sol!=NULL)
+    // cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt, 8, 7);
+    // if(sol!=NULL)
+    // cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+    // sol =  LCA(bt, 1, 8);
+    // if(sol!=NULL)
+    // cout<<sol->data;
+    // else{
+    //     cout<<"WTF";
+    // }
+    // br;
+
+
+    binaryTree *sol =  LCA(bt, 19, 6);
+    if(sol!=NULL)
+    cout<<sol->data;
+    else{
+        cout<<"WTF";
+    }
     
 }
