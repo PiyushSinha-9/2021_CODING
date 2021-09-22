@@ -33,16 +33,6 @@ typedef pair<long long,long long> pll;
 //############################################################
 
 
-bool check(vector<int> sol){
-    int n=sol.size();
-    int val=0;
-    for(int i=0;i<n-1;i++){
-        val+=abs(sol[i]-sol[i+1]);
-    }
-
-    return val%2=0;
-}
-
 signed main() {
     fast
     #ifndef ONLINE_JUDGE
@@ -51,54 +41,51 @@ signed main() {
     #endif
 
     //######################
-
-
-
     int testCase;
     cin>>testCase;
 
     while(testCase--){
         int n;
-        cin>> n;
+        cin>>n;
 
-        vector<int> arr(n),sol(n), even, odd;
-        int evensize=0, oddsize=0;
+        string s1,s2;
+        cin>>s1;
+        cin>>s2;
 
-        for(int &i: arr){
-            cin>>i;
-            if(i%2==0){
-                evensize+=1;
-                even.push_back(i);
+        if(s1==s2){
+            cout<<"YES";br;
+            continue;
+        }
+
+       int dif=0,s11=0,s10=0;
+       int d1=0,d0=0;
+        
+        for(int i=0;i<n;i++){
+            if(s1[i]!=s2[i]){
+                dif+=1;
+                if(s1[i]=='0'){
+                    d0+=1;
+                }else{
+                    d1+=1;
+                }
             }else{
-                oddsize+=1;
-                odd.pb(i);
-            }
-        }
-        int i=0,ie=0,io=0;
-        while(ie<evensize and io<oddsize and i!=n){
-            if(ie<evensize){
-                sol[i++]=even[ie++];
-            }
-            if(io<oddsize){
-                sol[i++]=odd[io++];
+                if(s1[i]=='0'){
+                    s10+=1;
+                }else{
+                    s11+=1;
+                }
             }
         }
 
-        while(ie<evensize){
-            sol[i++]=even[ie++];
-        }
-
-        while(io<oddsize){
-            if(io<oddsize){
-                sol[i++]=odd[io++];
-            }
-        }
-
-        if(check(sol)){
-            print(sol);
+        bool flag=true;
+        
+        if((d1>0 and s11>0 and d0>0 and s10>0) or (d1>0 and s11>0 and d0==0) or (d0>0 and s10>0 and d1==0) 
+        or (s11==0 and d1>0 and 2*d1==d0 and s10!=0 )or (s10==0 and d0>0 and 2*d0==d1 and s11!=0) or (s11==0 and s10==0 and (2*d1==d0 or 2*d0==d1)) ){
+            cout<<"YES";
         }else{
-            cout<<-1<<endl;
+            cout<<"NO";
         }
 
+        br;
     }
 }

@@ -33,16 +33,6 @@ typedef pair<long long,long long> pll;
 //############################################################
 
 
-bool check(vector<int> sol){
-    int n=sol.size();
-    int val=0;
-    for(int i=0;i<n-1;i++){
-        val+=abs(sol[i]-sol[i+1]);
-    }
-
-    return val%2=0;
-}
-
 signed main() {
     fast
     #ifndef ONLINE_JUDGE
@@ -51,54 +41,28 @@ signed main() {
     #endif
 
     //######################
-
-
-
     int testCase;
     cin>>testCase;
 
     while(testCase--){
         int n;
-        cin>> n;
+        cin>>n;
 
-        vector<int> arr(n),sol(n), even, odd;
-        int evensize=0, oddsize=0;
+        string s1,s2;
+        cin>>s1;
+        cin>>s2;
 
-        for(int &i: arr){
-            cin>>i;
-            if(i%2==0){
-                evensize+=1;
-                even.push_back(i);
-            }else{
-                oddsize+=1;
-                odd.pb(i);
-            }
-        }
-        int i=0,ie=0,io=0;
-        while(ie<evensize and io<oddsize and i!=n){
-            if(ie<evensize){
-                sol[i++]=even[ie++];
-            }
-            if(io<oddsize){
-                sol[i++]=odd[io++];
-            }
+        if(s1==s2){
+            cout<<"YES";br;
+            continue;
         }
 
-        while(ie<evensize){
-            sol[i++]=even[ie++];
-        }
 
-        while(io<oddsize){
-            if(io<oddsize){
-                sol[i++]=odd[io++];
-            }
-        }
-
-        if(check(sol)){
-            print(sol);
+        if((s1=="000" and s2="111") or (s2=="000" and s1="111") ){
+                cout<<"NO";
         }else{
-            cout<<-1<<endl;
+            cout<<"YES";
         }
-
+        br;
     }
 }
