@@ -13,6 +13,9 @@ struct Trienode
     int wc;  //wc:word_count
     Trienode *child[26];
 };
+
+
+
 Trienode nodepool[100000];  //Pool of 100K Trienodes
 Trienode *root;    //Root of Trie
 int poolcount;  //Always points to next free Trienode
