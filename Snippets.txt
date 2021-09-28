@@ -4,6 +4,7 @@ dsu => Disjoint  set union
 BinaryTree -> BinaryTree implementation
 Kruskal -> Kruskal MST using DSU
 PrimsMST -> Prims MST
+DiagonalPrint -> for matrix chain multiplication we have to move diagonally
 
 
 

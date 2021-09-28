@@ -1,3 +1,10 @@
+/*
+    ac?b?c - Ouput -: 24
+    ? can be replaced with {a,b,c}
+
+    find total abc subseq found in all possible string 
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -32,45 +39,6 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-const int N=1e5+3;
-const int inf=1e9+7;
-vector<int> dp(N,inf);
-
-int solve(int n){
-    if(n<=3){
-        return n;
-    }
-
-    if(dp[n]!=inf){
-        return dp[n];
-    }
-
-    for(int i=1;i*i<=n;i++){
-        dp[n]= min(dp[n], solve(n-i*i) +1 );
-    }
-
-    return dp[n];
-}
-
-
-int solveTable(int n){
-    vector<int> arr(n+1, inf);
-    arr[0]=0;
-    arr[1]=1;
-    arr[2]=2;
-    arr[3]=3;
-
-
-    for(int i=1;i*i<=n;i++){
-        for(int j=0;i*i+j<=n;j++){
-            arr[i*i+j] = min(arr[i*i+j], 1+arr[j]);
-        }
-    }
-
-
-    return arr[n];
-}
-
 
 signed main() {
     fast
@@ -81,12 +49,27 @@ signed main() {
 
     //######################
 
-    int n;
-    cin>>n;
+    string s;
+    cin>>s;
 
-    cout<<solveTable(n);
-    br;
+    int empty=1, a=0, ab=0, abc=0;
 
-    // cout<<solveTB
+
+    for(char i:s){
+        if(i == 'a'){
+            a+=empty;
+        }else if (i=='b'){
+            ab+=a;
+        }else if(i=='c'){
+            abc+=ab;
+        }else if(i=='?'){
+            abc = 3*(abc) + ab;
+            ab = 3*(ab) + a;
+            a = 3*(a) + empty;
+        }
+    }
+
+    cout<<abc;
+
 
 }

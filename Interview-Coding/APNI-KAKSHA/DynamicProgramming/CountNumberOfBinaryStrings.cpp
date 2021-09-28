@@ -32,43 +32,42 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-const int N=1e5+3;
-const int inf=1e9+7;
-vector<int> dp(N,inf);
+map<pair<int,string>,int> dp;
 
-int solve(int n){
-    if(n<=3){
-        return n;
+
+int solve(int n, string s="", int ind=0){
+    if(ind==n){
+        cout<<s<<"\n";
+        return 1;
     }
 
-    if(dp[n]!=inf){
-        return dp[n];
+    if(dp[mp(ind,s)]!=0){
+        cout<<"okay";br;
+        return dp[mp(ind,s)];
     }
 
-    for(int i=1;i*i<=n;i++){
-        dp[n]= min(dp[n], solve(n-i*i) +1 );
+
+    if(ind > n){
+        return 0;
     }
 
-    return dp[n];
-}
+    int sol=0;
 
-
-int solveTable(int n){
-    vector<int> arr(n+1, inf);
-    arr[0]=0;
-    arr[1]=1;
-    arr[2]=2;
-    arr[3]=3;
-
-
-    for(int i=1;i*i<=n;i++){
-        for(int j=0;i*i+j<=n;j++){
-            arr[i*i+j] = min(arr[i*i+j], 1+arr[j]);
+    if(s == ""){
+        sol += solve(n, s+"0", ind+1);
+        sol += solve(n, s+"1", ind+1);
+    }else{
+        if(s[ind-1]=='1'){
+            sol += solve(n, s+"0", ind+1);
+        }else {
+            sol += solve(n, s+"1", ind+1);
+            sol += solve(n, s+"0", ind+1);
         }
     }
+    return dp[mp(ind,s)]=sol;
 
 
-    return arr[n];
+
 }
 
 
@@ -81,12 +80,10 @@ signed main() {
 
     //######################
 
+
     int n;
     cin>>n;
 
-    cout<<solveTable(n);
-    br;
-
-    // cout<<solveTB
+    cout<<solve(n);
 
 }

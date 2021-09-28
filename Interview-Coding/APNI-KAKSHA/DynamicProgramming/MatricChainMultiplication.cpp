@@ -32,44 +32,56 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-const int N=1e5+3;
-const int inf=1e9+7;
-vector<int> dp(N,inf);
 
-int solve(int n){
-    if(n<=3){
-        return n;
+const int inf = 1e9+7;
+const int N = 1e3+3;
+
+int dp[N][N];
+
+int MatrixChain(vector<int> arr, int l, int r){
+    if(l==r){
+        return 0;
     }
 
-    if(dp[n]!=inf){
-        return dp[n];
+    if(dp[l][r]!=-1){
+        return dp[l][r];
     }
 
-    for(int i=1;i*i<=n;i++){
-        dp[n]= min(dp[n], solve(n-i*i) +1 );
+    dp[l][r]=inf;
+
+    for(int k=l;k<=r;k++){
+        dp[l][r] = min(dp[l][r], MatrixChain(arr, l,k) + MatrixChain(arr, k+1,r) + arr[l-1] *arr[k] *arr[r]);
     }
 
-    return dp[n];
+    return dp[l][r];
 }
 
 
-int solveTable(int n){
-    vector<int> arr(n+1, inf);
-    arr[0]=0;
-    arr[1]=1;
-    arr[2]=2;
-    arr[3]=3;
+int MCMTable(vector<int> arr, int n){
+    
+    memset(dp,0,sizeof(dp));
 
-
-    for(int i=1;i*i<=n;i++){
-        for(int j=0;i*i+j<=n;j++){
-            arr[i*i+j] = min(arr[i*i+j], 1+arr[j]);
+    for(int len=2;len<=n;len++){
+        for(int i=1;i<n-len+1; i++){
+            int j = i+len-1;
+            
+            dp[i][j] = inf;
+            for(int k=i;k<=j;k++){
+                dp[i][j] = min(dp[i][j], dp[i][k]+dp[k+1][j] + arr[i-1]*arr[k]*arr[j]);
+            }
         }
     }
+    
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<dp[i][j]<<" ";
+        }
+        br;
+    }
 
+    return dp[1][n-1];
+}   
 
-    return arr[n];
-}
 
 
 signed main() {
@@ -81,12 +93,22 @@ signed main() {
 
     //######################
 
+    memset(dp,-1,sizeof(dp));
+
     int n;
     cin>>n;
 
-    cout<<solveTable(n);
-    br;
+    vector<int> arr(n);
 
-    // cout<<solveTB
+    for(int &i:arr){
+        cin>>i;
+    }
+
+    cout<<MatrixChain(arr,1,n-1);br;
+    cout<<MCMTable(arr,n);
+
+  
+
 
 }
+ 

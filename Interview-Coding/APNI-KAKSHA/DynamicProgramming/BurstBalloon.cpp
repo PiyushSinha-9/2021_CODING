@@ -1,3 +1,5 @@
+//https://leetcode.com/problems/burst-balloons/
+
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -32,45 +34,6 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-const int N=1e5+3;
-const int inf=1e9+7;
-vector<int> dp(N,inf);
-
-int solve(int n){
-    if(n<=3){
-        return n;
-    }
-
-    if(dp[n]!=inf){
-        return dp[n];
-    }
-
-    for(int i=1;i*i<=n;i++){
-        dp[n]= min(dp[n], solve(n-i*i) +1 );
-    }
-
-    return dp[n];
-}
-
-
-int solveTable(int n){
-    vector<int> arr(n+1, inf);
-    arr[0]=0;
-    arr[1]=1;
-    arr[2]=2;
-    arr[3]=3;
-
-
-    for(int i=1;i*i<=n;i++){
-        for(int j=0;i*i+j<=n;j++){
-            arr[i*i+j] = min(arr[i*i+j], 1+arr[j]);
-        }
-    }
-
-
-    return arr[n];
-}
-
 
 signed main() {
     fast
@@ -81,12 +44,10 @@ signed main() {
 
     //######################
 
-    int n;
-    cin>>n;
+    int testCase;
+    cin>>testCase;
 
-    cout<<solveTable(n);
-    br;
+    while(testCase--){
 
-    // cout<<solveTB
-
+    }
 }
