@@ -1,15 +1,3 @@
-No of strings with given prefix = 6
-No of strings with given prefix = 4
-No of strings with given prefix = 3
-No of strings with given prefix = 1
-No of strings with given prefix = 0
-No of strings with given prefix = 1
-Deletion...STARTED
-DONE...
-
-No of strings with given prefix = 4
-No of strings with given prefix = 2
-No of strings with given prefix = 2
-No of strings with given prefix = 0
-No of strings with given prefix = 0
-No of strings with given prefix = 0
+8
+1 3 -1 -3 5 3 6 7
+3

@@ -133,44 +133,54 @@ signed main() {
 
     //######################
 
-    init();
-    char a[5] = {'a','r','m','y'};
-    char b[5] = {'a','r','m'};
-    char c[5] = {'a','r','m','s'};
-    char d[5] = {'a','r','y'};
-    char e[5] = {'a','m','y'};
-    char f[5] = {'a','p','i'};
+    // init();
+    // char a[5] = {'a','r','m','y'};
+    // char b[5] = {'a','r','m'};
+    // char c[5] = {'a','r','m','s'};
+    // char d[5] = {'a','r','y'};
+    // char e[5] = {'a','m','y'};
+    // char f[5] = {'a','p','i'};
 
 
-    insert(a);
-    insert(b);
-    insert(c);
-    insert(d);
-    insert(e);
-    insert(f);
+    // insert(a);
+    // insert(b);
+    // insert(c);
+    // insert(d);
+    // insert(e);
+    // insert(f);
 
-    //cout<<search(b)<<"\n";
+    // //cout<<search(b)<<"\n";
 
-    printf("No of strings with given prefix = %d\n",countPrefix("a"));
-    printf("No of strings with given prefix = %d\n",countPrefix("ar"));
-    printf("No of strings with given prefix = %d\n",countPrefix("arm"));
-    printf("No of strings with given prefix = %d\n",countPrefix("army"));
-    printf("No of strings with given prefix = %d\n",countPrefix("armi"));
-    printf("No of strings with given prefix = %d\n",countPrefix("ary"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("a"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("ar"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("arm"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("army"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("armi"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("ary"));
 
-    cout<<"Deletion...STARTED\n";
-    deleteTrie(a);
-    deleteTrie(d);
-    cout<<"DONE...\n\n";
+    // cout<<"Deletion...STARTED\n";
+    // deleteTrie(a);
+    // deleteTrie(d);
+    // cout<<"DONE...\n\n";
 
 
-    printf("No of strings with given prefix = %d\n",countPrefix("a"));
-    printf("No of strings with given prefix = %d\n",countPrefix("ar"));
-    printf("No of strings with given prefix = %d\n",countPrefix("arm"));
-    printf("No of strings with given prefix = %d\n",countPrefix("army"));
-    printf("No of strings with given prefix = %d\n",countPrefix("armi"));
-    printf("No of strings with given prefix = %d\n",countPrefix("ary"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("a"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("ar"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("arm"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("army"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("armi"));
+    // printf("No of strings with given prefix = %d\n",countPrefix("ary"));
 
-    return 0;
+    // return 0;
+
+
+    map<int,int> mp;
+    mp[3]=1;
+    mp[-1]=2;
+    mp[100]=3;
+
+    for(auto i=mp.begin(); i!=mp.end();i++){
+        cout<<i.first<<" "<<i->second;br;
+    }
     
 }
