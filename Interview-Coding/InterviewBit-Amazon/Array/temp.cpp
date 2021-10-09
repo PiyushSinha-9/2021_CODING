@@ -33,24 +33,52 @@ typedef pair<long long,long long> pll;
 //############################################################
 
 
-bool compare(int A, int B){
-    string as=to_string(A);
-    string bs=to_string(B);
-    cout<<as <<" "<<bs;br;
-    return ((as+bs).compare(bs+as) > 0);
+vector<int> parent;
+vector<int> ranking;
+
+int find_set(int v) {
+    if (v == parent[v])
+        return v;
+    return parent[v] = find_set(parent[v]);
 }
 
+void make_set(int v) {
+    parent[v] = v;
+    ranking[v] = 0;
+}
 
-string largestNumber(const vector<int> &arr) {
-    vector<int> A= arr;
-    sort(A.begin(), A.end(),compare);
-    string ans="";
-    for(int i:A){
-        ans+=to_string(i);
+void union_sets(int a, int b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b) {
+        if (ranking[a] < ranking[b])
+            swap(a, b);
+        parent[b] = a;
+        if (ranking[a] == ranking[b])
+            ranking[a]++;
     }
-
-    return ans;
 }
+
+/*
+// by size 
+void make_set(int v) {
+    parent[v] = v;
+    size[v] = 1;
+}
+
+void union_sets(int a, int b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b) {
+        if (size[a] < size[b])
+            swap(a, b);
+        parent[b] = a;
+        size[a] += size[b];
+    }
+}
+
+*/
+
 
 signed main() {
     fast
@@ -61,37 +89,13 @@ signed main() {
 
     //######################
 
-    vector<vector<int> > squ=
-    {
-        {0,1},
-        {0,1}
-    };
-    // vector<int> arr ={3,30,34,5,9};
-    vector<int> arr ={3,34};
-
-    cout<<largestNumber(arr);
-        
-    // setZeroes(squ);
-
-    // for(int i=0;i<squ.size();i++){
-    //     for(int j=0;j<squ[0].size();j++){
-    //         cout<<squ[i][j]<<" ";
-    //     }
-    //     br;
-    // }
-
-    // for(int i=0;i<10;i++){
-    //     for(int j=0;j<=;j++){
-    //         squ[i][j] = 1;
-    //     }
-    // }
-
-    // for(int i=0;i<10;i++){
-    //     for(int j=0;j<10;j++){
-    //         cout<<squ[i][j]<<" ";
-    //     }
-    //     br;
-    // }
+    int al =4;
+    int bl =2;
+    vector<vector<int> > dp(bl+1,vector<int>(al+1,0));
+    for(auto i: dp){
+        for(auto j:i){
+            cout<<j<<" ";
+        }
+        br;
+    }
 }
-
-

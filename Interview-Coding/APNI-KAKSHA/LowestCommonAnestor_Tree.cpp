@@ -111,7 +111,7 @@ int lowComAns(binaryTree *root, int n1,int n2){
 
     int pc=0;
     int path1Size = lPath.size();
-    int path2Size = rPath.size();
+    int  );
     while(pc<path1Size and pc<path2Size){
         if(lPath[pc]!=rPath[pc]){
             break;
@@ -124,7 +124,7 @@ int lowComAns(binaryTree *root, int n1,int n2){
 }
 
 
-binaryTree *LCA(binaryTree *root, int n1, int n2){              // n1 and n2 we are prefusing that they both exist
+binaryTree *LCA(binaryTree *root, int n1, int n2){        // n1 and n2 we are prefusing that they both exist
     if(!root){
         return NULL;
     }

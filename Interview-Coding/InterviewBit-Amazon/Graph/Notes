@@ -1,0 +1,19 @@
+
+
+-Dijkstra code very much similar Prims.
+
+
+-Before using DSU in Kruskal sort the edges on weight. 
+
+-Relax in Bellman Ford like Nodes-1 times.
+
+
+- ok in Floyd Warshall if -1 is representing the imposibility b/w i to j then 
+    matrix[i][j]= min (matrix[i][j], matrix[i][k]+matrix[k][j]);
+    we cannot use like we use in INF case.
+    USE these condition -:
+     if(matrix[i][k]==-1 || matrix[k][j]==-1)continue;
+    else if(matrix[i][j]==-1)matrix[i][j]=matrix[i][k]+matrix[k][j];
+    else if(matrix[i][j]>matrix[i][k]+matrix[k][j]){
+        matrix[i][j]=matrix[i][k]+matrix[k][j];
+    }
