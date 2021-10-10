@@ -1,10 +1,2 @@
-# 2021_CODING
+### This is where I save all Coding questions which I am practicing.
 
-### DailyWork Folder -:
-    It Contains Leetcode problems I solve daily(atmost daily).
-  
-### CodeForces_CodeChef Folder -:
-   #### ITMO -:
-    Problem I solve on a free course (ITMO Academy: pilot course) on codeforces.
-   #### Contests -:    
-    Contest I am participating on Codeforces or CodeChef.
