@@ -1,0 +1,55 @@
+
+
+## 0 - 1 KnapSack Problem (6)
+    SubSet Sum Problem
+    Equal Sum Partition
+    Count Number of SubSetSum
+    Minimum SubSet Sum  Difference
+    Target Sum
+    Count Number of SubSets whose Difference is n
+
+
+## Unbounded KnapSack 
+    Rod-Cutting
+    Coin Exchange 1 (Maximum number of ways)
+    Coin Exchange 2 (Minimum number of Coins)
+    Maximum Ribbon Cut
+
+
+## LCS (Longest Common SubString)
+    Longest Common SubString
+    Print LCS
+    Shortest common SubSequence
+    Print SCS
+    Min Number of insertion and Deletion - A -> B
+    Longest Repeating SubSequence
+    Length of Longest SubSeq of which a substring in b 
+    SubSequence Pattern Matching
+    Count How many times a appear as SubSequence in b
+
+    Largest Palindromic SubSequence
+    Longest Palindromic SubString
+    Count of Palindromic SubString
+    Min Number of Deletion in a string to make it a Palindrom
+    Min Number of insertion in a string to make it a Palindrom
+
+
+## Fibonacci
+
+## LIS
+
+## Kandane's Algoithm
+
+## Matrix Chain Multiplication
+
+## DP on Trees
+
+## DP on Grid
+
+## Others
+
+
+
+
+
+

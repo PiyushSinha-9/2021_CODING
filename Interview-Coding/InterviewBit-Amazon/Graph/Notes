@@ -1,11 +1,11 @@
 
 
--Dijkstra code very much similar Prims.
+- Dijkstra code very much similar Prims.
 
 
--Before using DSU in Kruskal sort the edges on weight. 
+- Before using DSU in Kruskal sort the edges on weight. 
 
--Relax in Bellman Ford like Nodes-1 times.
+- Relax in Bellman Ford like Nodes-1 times.
 
 
 - ok in Floyd Warshall if -1 is representing the imposibility b/w i to j then 
@@ -18,3 +18,6 @@
         matrix[i][j]=matrix[i][k]+matrix[k][j];
     }
 
+- In DAG there is always at least one node with indegree 0;
+
+-  
