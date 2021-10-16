@@ -6,7 +6,7 @@ Kruskal -> Kruskal MST using DSU
 PrimsMST -> Prims MST
 DiagonalPrint -> for matrix chain multiplication we have to move diagonally
 TrieAll -> Trie init, insert, delete, search,prefixcount
-
+Sieve -> Sieve of Eratosthenes
 
 //////////////////          Future Release
 graph

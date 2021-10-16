@@ -1,0 +1,27 @@
+
+
+## PART 1
+    -> Primality Test
+    -> Prime Factorization
+    -> Sieve of Eratosthenes
+    -> Binary Exponentation
+    -> Euclid Algorithms of GCD
+    -> GoldBack's Conjecture
+    -> Finding Number of Divisors of N
+    -> CalCulating Binomial Coefficient
+    -> Segmented Sieve
+    -> Introduction to Modulo Inverse and how to calc it 
+
+
+
+
+## PART 2
+    -> Extented Euclidean Algorithms
+    -> Linear Diophantine Equation
+    -> Matrix Exponentiation
+    -> Fibonacci Number in O(logn)
+    -> Chinese Remainder Theorem
+    -> Euler Totient Function
+    -> Sum of Divisors
+    -> Pollard p-1 method
+    -> Pollard Rho Algorithm

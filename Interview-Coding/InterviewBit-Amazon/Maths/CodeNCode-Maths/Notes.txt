@@ -1,0 +1,7 @@
+
+For Prime Factorization -: 
+Claim -: If N is a composite number then there is at 1 prime Divisor of N below sqrt(N)
+
+4 = 2*2 = 2
+6 = 2*3 = 2
+
