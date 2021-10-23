@@ -1,7 +1,3 @@
-
-
-
-// ------------------------------------------------------------------  Solved for 50 Points
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
@@ -36,38 +32,23 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-#define int long long 
+const int inf = 1e9+7;
+vector<int> coins;
 
-int powerMOD(int a, int pow, int md){
+int helper(int n, int k){
+    vector<int> dp(k+1, inf);
+    dp[0] = 0;
 
-    int value =1;
-
-    while(pow){
-        if(pow%2){
-            value = (value%md * a%md)%md;
-            pow-=1; 
-        }
-
-        if(pow%2==0){
-            a = (a%md * a%md)%md;
-            pow/=2;
+    for(int i=1;i<=k;i++){
+        for(int j=0;j<n;j++){
+            if(i-coins[j]>=0){
+                dp[i] = min(dp[i], 1+dp[i-coins[j]]);
+            }
         }
     }
 
-    return value%mod;
+    return (dp[k] == inf? -1 : dp[k] ); 
 }
-
-
-int gcd_Iterative(int a, int b){
-
-    while(b){
-        int temp = a%b;
-        a=b;
-        b=temp;
-    }
-    return a;
-}
-
 
 
 signed main() {
@@ -79,30 +60,13 @@ signed main() {
 
     //######################
 
-    int testCase;
-    cin>>testCase;
+    int n, k, temp;
+    cin>>n>>k;
 
-    while(testCase--){
-        int a, b, n;
-        cin>>a>>b>>n;
-        int sub =abs(a-b);
-        bool flag = false;
-        if(sub==0){
-            sub = mod;
-            flag =true;
-        }
-
-        int value1 = powerMOD(a%sub, n, sub);
-        int value2= powerMOD(b%sub, n, sub);
-
-
-        if(flag){
-            cout<<((value1+value2) % mod);br;
-            continue;
-        }
-
-
-        cout<<gcd_Iterative(value1+value2,sub)%mod;
-        br;
+    for(int i=0;i<n;i++){
+        cin>>temp;
+        coins.pb(temp);
     }
+
+    cout<<helper(n,k);
 }

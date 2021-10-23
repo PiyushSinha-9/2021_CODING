@@ -1,0 +1,53 @@
+
+// okay something every important
+
+Okay Pay Attention -:
+
+in counting Summation of a target using given coins we have to 2 options -:
+- distinct ordered ways
+2+2+5 
+3+3+3
+2+2+2+3
+
+- number of distinct ways
+2+2+5 
+2+5+2
+5+2+2
+3+3+3
+2+2+2+3
+2+2+3+2
+2+3+2+2
+3+2+2+2
+
+
+This can be Achieved by simple change in Code 
+
+in First - distinct ordered ways
+Keep Coins For Loop above Target For Loop and we can achieve this 
+ for(int i:c){
+        for(int j=i;j<=k;j++){
+            (dp[j]+=dp[j-i]) %= mod;
+        }
+    }
+
+In Second - All number of distinct ways
+Keep Coins For Loop below Target For Loop and we can achieve this 
+
+for(int i=1;i<=k;i++){
+        for(int j=0;j<n;j++){
+            if(i-coins[j]>=0){
+                (dp[i] += dp[i-coins[j]]) %= mod;
+            }
+        }
+    }
+
+---------------------------------------------------------------------------------------------------
+
+In KnapSack First Loop is of Items and 2nd is of Price or Target
+cin >> n >> x;
+  vector<int> price(n), pages(n);
+  for (int&v : price) cin >> v;
+  for (int&v : pages) cin >> v;
+  vector<vector<int>> dp(n+1,vector<int>(x+1,0));
+
+  

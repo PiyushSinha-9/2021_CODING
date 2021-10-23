@@ -1,0 +1,285 @@
+
+For Prime Factorization -: 
+Claim -: If N is a composite number then there is at 1 prime Divisor of N below sqrt(N)
+
+4 = 2*2 = 2
+6 = 2*3 = 2
+
+
+X + 0 =x idetity Element fr + operator is 0
+X - 0 =x idetity Element fr - operator is 0
+X / 1 =x idetity Element fr / operator is 1
+X * 1 =x idetity Element fr * operator is 1
+x ^ 0 =x Xor IE is 0
+Identity Matrix -:
+1 0 0
+0 1 0
+0 0 1
+
+
+
+Recurrence Relation & Matrix 
+1 1 2 3 5 8 13 21 34 ...
+
+[ F1 f2] * MagicMatrix = [F2 F3]
+[ F2 F3] * MagicMatrix = [F3 f4]
+[f1 f2]  * [MagicMatrix]^2 = [F3 F4]
+
+HERE MagicMatrix is 2*2 so M^3 + log(n) = 8 + log(n)
+
+[ F1 f2] * MagicMatrix = [F2 F3]
+f1*A + f2*c = f2 
+A=0, C=1
+f1*B + f2*d = F3
+b=1 d=1 as in fibonaaci f1 + f2 = f3
+
+0 1
+1 1 is the transition matrix 
+
+f1 f2 * (transition matrix)^n-1 = fn fn+1
+
+
+
+
+-------------------------------------------------------------------------------------
+Euclid Division Lemma
+For positive integer A and B there exist integer q and r such that
+A=B*q + r where 0<=r<B
+
+(a+b)%mod = (a%mod + b%mod)%mod
+N1 = mod*q1 + r1
+N2 = mod*q2 + r2
+
+(N1+N2)%mod = (mod *q1 +r1+mod*q2+r2)%mod 
+Multiple of mod is 0 
+= (0 + r1 + 0 + r2)%mod
+=(r1 +r2)%mod       get from the above 2 equtn
+= (a+b)%mod = (a%mod + b%mod)%mod
+
+
+GCD(HCF) of 2 number A B
+
+
+int gcd(int a, int b){
+    if(b==0){
+        return a;
+    }else{
+        return gcd(b, a%b);
+    }
+}
+GCD(A,B) = GCD(A-B,B) = GCD(A,B-A)
+
+GCD 1 to L-1 = g1
+GCD R+1 to n = g2 
+
+GCD of array with excluding L to R = GCD(g1,g2)
+
+
+-------------------------------------------------------------------------------------
+
+a and b are said to be congruent to each other under modulo N.
+a =(3) b(mod N)
+
+13 =(3) 41(mod 7)
+13 mod 7 = 6
+41 mod 7 = 6
+
+useCase
+13 =(3) 41(mod 7)
+
+(13 + 35 +5)%7 = (53) % 7 = 4
+(41 + 35 + 5)%7 = (81) % 7 = 4
+same for multiplication 
+
+IF 
+    a =(3) b(mod N)
+then    
+    a-b =(3) 0 (mod N)
+    a-b is divible by n  - (II)
+
+using (II) 
+a  = N*k + b
+
+IF 
+    a*b = c;
+THEN 
+
+    a(mod N) * b(mod N) =(3) c(mod N)
+    res = a*b
+    res = ((a%N) * (b%N)) % N
+
+FIND LAst digit of 2573 * 34268  ? 
+res = ((2573%10) * (34268%10))%10
+
+(142 + 453 + 324 +781 + 523 +250 + 313)%2 = ?
+(0 + 1 + 0 +1 +1 +0 +1)%2 = 0 
+
+4819250393285 is divisble by 9 ? 
+Add all number and it should be divisble by 9 
+
+IF 
+    a =(3) b(mod N) then
+    a^k =(3) b^k(mod N)   --(IIIII)
+
+FIND 
+    29^10(mod 3)
+    29 =(3) 2(mod 3)        --using (IIIII)
+    (2^10)%mod 3
+    1024 % 3 = 1
+
+
+FIND 
+    2^123456789(mod 7)
+    (((2)^3)^41152263) mod7
+    8^41152263 (mod 7)
+    (8%7)^41152263 (mod 7)
+    1
+
+-------------------------------------------------------------------------------------
+
+Modular GCD (CodeChef)
+If you need to calculate GCD(X,Y) and X is very huge number but Y is smallen then We would find potential GCD candiantes 
+and apply Modulo Arithmetic to find GCD
+
+GCD(453274590445273854945,90) = ? 
+90 -> 1,2,3,5,6,9,10,15,18,30,45,90 (potential GCD candiantes)
+we can check till sqrt(90)
+
+Important -: 
+If n divides a number num than num/n also divides the number num 
+For Example 
+2 Divides 12
+then 12/2 which is 6 also divides 12 
+
+
+
+-------------------------------------------------------------------------------------
+
+Modulo Multiplicative Inverse   (A/B)%mod
+
+Inverse 
+10/5 = 10 * multiplicative inverse of 5
+     = 10 * (1/5)
+     = 10 * (0.2)
+
+(A/B) % P = (A*X) % P where X is modulo Inverse
+          = ((A%P) * (X%P))%P
+
+How to find Modulo Inverse ? 
+
+5 * (1/5)  = 1
+Modulo Multiplicative inverseof number N, under modulo P is defined to be a number X such that
+
+N * X =(3) 1(mod P)
+5 * 3 =(3) 1(MOD 7)
+
+DOES all number have modulo inverse 
+NO, 12 has no modulo inverse under modulo 6 as 12*x is multiple of 6
+Modulo inverse of N under Modulo P exist iff GCD(N, P) = 1 basically they should be co-prime in nature.
+
+ Ways to calculae Modulo Inverse 
+ -> Using Fermat's little theorem
+ -> Using Extended Euclidean Algorithm
+
+
+Fermat's little theorem -:
+a^(m-1) =(3) 1 mod m        where m is Prime Number  and a, m are CoPrime GCD(a,m) =1 
+DIVIDING both side by a
+
+a^(m-2) =(3) a^(-1) mod m
+so this is how we calculate inverse of a
+
+
+-------------------------------------------------------------------------------------
+
+Find Total number of divisors from prime factorization of a number n
+
+Example 
+N = 300
+N = 2^2 * 3^1 * 5^2 (prime factorization) 
+
+Total Divisors = 18
+
+If we are already given factor and its power and we dont have to calculate it 
+then we can simply use
+
+total = (p0 + 1) * (p1 + 1) * (p2 + 1) ..
+where p0 , p1,p2 are power
+
+
+-------------------------------------------------------------------------------------
+
+Given q queries of type N K, calculate C(N, K) % P where P > N
+Okay here P > N if in case P was smaller then N then we use Lucas Theorm Something ?
+https://www.youtube.com/watch?v=Lxpr5OpeNa8&list=PL2q4fbVm1Ik4liHX78IRslXzUr8z5QxsG&index=23
+
+C (N,K) mod P       =                        N! % P
+                                        (K! % P) * ((N-K)%P)
+
+PreCompute Factorial till N 
+F[1000001] 
+by using F[i] = (F[i-1]*i) % P, F[0] = F[1] = 1 
+then Above Formula will be F[N] * inverse(F[K]) * inverse(F[N-K])
+take care of %P in each multiplication
+For inverse we can use Fermat Theoram easily powerMOD(F[K], P-2, P)
+
+-------------------------------------------------------------------------------------
+
+Euler's Totient Function (ETF) counts the number of positive integers upto n which are co-prime to n .
+Phi(n) = # of positive ineger CoPrime to n
+
+Novice  - 1 to n if GCD(i, num) == 1; Count ++;
+IF p is prime number phi(p) = p-1
+-----
+P is PRIME HERE 
+IF phi(p^x) = ?
+IF phi(2^5) = 16
+
+ phi(p^x)  = p^x - Number of Integers not coprime with P 
+           = P^x - Number of multiple of P
+           = P^x - (p^x/p)
+           = p^[x-1](p-1)   ---(0909)  // only x-1 is in power with p 
+
+-----
+
+Most Important Property which is Multiplicative Property 
+F(N*M) = f(N) * f(M) where gcd(N,M) = 1
+
+PHI is also a Multiplicative Property so -:
+
+This Multiplicative Property can also be used to justify 
+total number of divisors = (p0 + 1) * (p1 + 1) * (p2 + 1) ..
+
+N = p1^x1 * p2^x2 * p3^x3 * ... * pk*xk
+F(N) = F(p1^x1) * F(p2^x2) * F(p3^x3) * ... * F(pk*xk) 
+here any two number p1,p2,p3 GCD together is 1 following the Property of Multiplicative
+
+Take Phi Seperately from ---(0909) We can say that 
+phi(N) = phi(Factor^Power) * ...
+
+above Time Complexity is around sqrt(n)*log(n)
+Based on A number can not have more than log(n) PRIME Numbers 
+
+in phi(N) = phi(Factor^Power) * ...
+we divide and Multiple P1,P2,P3...
+
+phi(N) = N * (P1-1) * (P2-1) .... *(Pk-1)
+                P1       P2           Pk
+
+in sqrt(N) Time now we can calculate.
+
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
