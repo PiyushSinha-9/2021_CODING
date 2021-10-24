@@ -268,12 +268,44 @@ phi(N) = N * (P1-1) * (P2-1) .... *(Pk-1)
 
 in sqrt(N) Time now we can calculate.
 
+In NLog(Log(n)) TIME we can store phi till N
+
 -------------------------------------------------------------------------------------
 
+Euler Totient Function & GCD Sum 
 
+ans = <(summation sign) GCD(i, N)  where i=1 -> N
 
+ Brute -> For Q queries Q*Nlog(N)
+ Optimized -> For Q Queries NLog(N) (For finding Phi till N) + Q*sqrt(N)
 
+ Observation #1 : GCD(i, N) = one of the diviors of N
+ Observation #2 : Instead of Running loop from 1 to N we can check for each divisor d of N 
+                    how many numbers i are there with GCD(i,N) = d
 
+Let N= 12
+GCD(1,12) = 1
+2,12 = 2
+3,12 = 3
+...
+
+res = 1(d) * 4(times) + 2*2(times) + 3*2 + 4*2 + 6*1 + 12*1  
+
+-------------------------------------------------------------------------------------
+
+Segmented Sieve 
+
+L and R are big But R-L +1 >=10^6
+
+Steps :
+    - Generate all Prime Number up to sqrt(R)
+    - Create an array of size R-L +1 and set alll elemts to be 0 (0: Prime, 1:Composite)
+    - for each prime p in range 2 to sqrt(R):
+            For every muliple of m of P in range L to R mark index m-L as 1
+
+-------------------------------------------------------------------------------------
+
+Total Number of Common Divisors between N and K .... Finding in Log(N) time 
 
 
 

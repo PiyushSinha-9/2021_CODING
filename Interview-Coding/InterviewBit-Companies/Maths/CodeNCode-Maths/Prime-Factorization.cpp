@@ -10,7 +10,7 @@ void primeFact(int N){
             }
             cout<<i<<" ^ "<<cnt<<endl;
         }
-        if(N>1){
+        if(N>1){        // Condition For Prime Number 
             cout<<N<<"^"<<1<<endl;
         }
     }

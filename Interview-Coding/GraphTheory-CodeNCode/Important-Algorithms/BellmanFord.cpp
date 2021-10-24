@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef pair<long long,long long> pll;
+
+#define pi (3.141592653589)
+#define mod 1000000007
+#define F first
+#define S second
+#define print(x) for(auto iuiuiuiuiui:x){ cout<<iuiuiuiuiui<<" ";}br;
+#define print_array(array,size) for(ll i=0;i<size;i++){ cout<<array[i]<<" ";}br;
+#define br cout<<endl
+#define pb push_back
+#define mp(asd,fgh) make_pair(asd,fgh)
+#define all(c) c.begin(),c.end()
+#define ff first
+#define ss second
+#define min3(a, b, c) min(c, min(a, b))
+#define max3(a, b, c) max(c, max(a, b))
+#define min4(a, b, c, d) min(d, min(c, min(a, b)))
+#define rrep(i, n) for(int i=n-1;i>=0;i--)
+#define rep(i,n) for(int i=0;i<n;i++)
+#define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+
+#define FILE_READ_IN freopen("input.txt","r",stdin);
+#define FILE_READ_OUT freopen("output.txt","w",stdout);
+
+#define INF LONG_LONG_MAX
+#define N_INF LONG_LONG_MIN
+
+#pragma GCC target("popcnt")
+
+//############################################################
+
+int n,v;
+const int N = 1e5+3;
+const int inf = 1e9+7;
+vector< vector<int> > adj[N];
+vector<vector<int> > edges;
+vector<int> dist(N), parent(N);
+vector<bool> vis(N);
+
+void bellmanFord(int source){
+
+    for(int i=0;i<n;i++){
+        dist[i] =inf;
+    }
+    dist[source] = 0;
+
+    for(int j=0;j<n-1;j++){
+        for(int i=0;i<v;i++){
+            dist[edges[i][1]] = min(dist[edges[i][0]]+edges[i][2], dist[edges[i][1]]);
+        }
+    }
+
+}
+
+
+signed main() {
+    fast
+    #ifndef ONLINE_JUDGE
+    FILE_READ_IN
+    FILE_READ_OUT
+    #endif
+
+    //######################
+
+    cin>>n>>v;
+    int e1,e2,w;
+    for(int i=0;i<v;i++){
+        cin>>e1>>e2>>w;
+        // adj[e1].pb({e2,w}); // destination , weight
+        // adj[e2].pb({e1,w});
+        edges.pb({e1,e2,w});
+        //edges.pb({e2,e1,w});
+    }
+    
+    int source;
+    cin>>source;
+
+    bellmanFord(source);
+    for(int i=0;i<n;i++){
+        cout<<dist[i]<<" ";
+    }br;
+}
+
+
+/*
+
+5 8
+1 2 3
+3 2 5
+1 3 2
+3 1 1
+1 4 2
+0 2 4
+4 3 -3
+0 1 -1
+0
+
+Ans 0 -1 2 -2 1
+
+
+*/
