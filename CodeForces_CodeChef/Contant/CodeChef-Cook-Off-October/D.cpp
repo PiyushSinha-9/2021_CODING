@@ -32,7 +32,8 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-#define int long long int 
+#define int unsigned long long int
+const int a = 1000000000000000001;
 
 signed main() {
     fast
@@ -43,26 +44,29 @@ signed main() {
 
     //######################
 
-    //cout<<0%2;
-    // br;
-    // br;
-
     int testCase;
     cin>>testCase;
 
+    int temp, temp2;
     while(testCase--){
-        int a, b, c;
-        cin>>a>>b>>c;
-
-        int total = a + 2*b + 3*c;
-
-        if(total%2==0){
-            cout<<0;
-        }else{
-            cout<<1;
-        }
+        cout<<"? "<<a;
         br;
-        
+        cin>>temp;
+        if(temp==0){
+            cout<<"! "<<a;
+            br;
+            continue;
+        }
+        cout<<"? "<<temp;
+        br;
+        cin>>temp2;
+        if(temp2==0){
+            cout<<"! "<<temp;
+            br;
+            continue;
+        }
 
+        cout<<1<<" "<<a+temp;
+        br;
     }
 }

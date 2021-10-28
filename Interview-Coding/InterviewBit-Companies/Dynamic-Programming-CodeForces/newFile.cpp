@@ -23,7 +23,7 @@ typedef vector<ll> vll;
 #define ss second
 #define fast ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
-#define FILE_READ freopen("input.txt","r",stdin), freopen("output.txt","w",stdout), freopen("error.txt","w",stderr);
+#define file_read freopen("input.txt","r",stdin), freopen("output.txt","w",stdout), freopen("error.txt","w",stderr);
 
 
 void __print(int x) {cerr << x;}
@@ -60,12 +60,11 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 signed main() {
     fast
     #ifndef ONLINE_JUDGE
-    FILE_READ
+    file_read
     #endif
 
     //######################
 
-     
-
+    
     
 }

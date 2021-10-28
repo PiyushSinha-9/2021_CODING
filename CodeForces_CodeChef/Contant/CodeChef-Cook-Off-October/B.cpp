@@ -32,7 +32,8 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-#define int long long int 
+#define int long long
+
 
 signed main() {
     fast
@@ -43,26 +44,62 @@ signed main() {
 
     //######################
 
-    //cout<<0%2;
-    // br;
-    // br;
-
     int testCase;
     cin>>testCase;
 
     while(testCase--){
-        int a, b, c;
-        cin>>a>>b>>c;
+        int n;
+        cin>>n;
+        vector<int> arr(n);
+        bool flag =true;
+        vector<int> zero, one;
+        for(int &i: arr){
+            cin>>i;
 
-        int total = a + 2*b + 3*c;
+            if(flag){
+                flag=false;
+                zero.pb(i);
+            }else{
+                flag=true;
+                one.pb(i);
+            }
 
-        if(total%2==0){
-            cout<<0;
-        }else{
-            cout<<1;
+        }
+
+        sort(all(one));
+        sort(all(zero), greater<int>());
+
+        int onesum=0, zsum=0;
+
+        for(int i:one){
+            onesum+=i;
+        }
+        for(int i:zero){
+            zsum+=i;
+        }
+
+
+        int sol = 0, ind1=0, ind2 =0;
+        flag =true;
+        for(int i=0;i<n;i++){
+            if(flag){
+                arr[i] = zero[ind1++];
+                flag=false;
+            }else{
+                arr[i] = one[ind2++];
+                flag=true;
+            }
+            cout<<arr[i]<<" ";
         }
         br;
-        
+
+        for(int i=1;i<n;i+=2){
+            sol += (arr[i-1]*onesum);
+         //   cout<<arr[i-1]<<" "<<onesum;br;
+            onesum-=arr[i];
+        }
+
+        cout<<sol;br;
 
     }
 }

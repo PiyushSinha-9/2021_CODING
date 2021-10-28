@@ -32,7 +32,7 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-#define int long long int 
+#define int long long
 
 signed main() {
     fast
@@ -43,26 +43,38 @@ signed main() {
 
     //######################
 
-    //cout<<0%2;
-    // br;
-    // br;
-
     int testCase;
     cin>>testCase;
 
     while(testCase--){
-        int a, b, c;
-        cin>>a>>b>>c;
-
-        int total = a + 2*b + 3*c;
-
-        if(total%2==0){
-            cout<<0;
-        }else{
-            cout<<1;
+        int n;
+        cin>>n;
+        int count =0;
+        int value =1;
+        
+        if(n==1){
+            cout<<1<<" "<<1;
+            br;
+            continue;
+        }
+        int total = (int)pow(2,n);
+        bool flag=false;
+        while(count!=total){
+            if(flag){
+                cout<<total-count<<" ";
+                count=total;
+            }else{
+                cout<<value<<" ";
+                if(value==n-1){
+                    cout<<value<<" ";
+                    flag=true;
+                    count+=value;
+                }
+                    count+=value;
+                    value+=1;
+            
+            }
         }
         br;
-        
-
     }
 }

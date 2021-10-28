@@ -20,7 +20,7 @@ typedef pair<long long,long long> pll;
 #define min4(a, b, c, d) min(d, min(c, min(a, b)))
 #define rrep(i, n) for(int i=n-1;i>=0;i--)
 #define rep(i,n) for(int i=0;i<n;i++)
-#define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
+#define fast ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
 #define FILE_READ_IN freopen("input.txt","r",stdin);
 #define FILE_READ_OUT freopen("output.txt","w",stdout);
@@ -32,37 +32,26 @@ typedef pair<long long,long long> pll;
 
 //############################################################
 
-#define int long long int 
 
+// #define int  long long int 
 signed main() {
     fast
     #ifndef ONLINE_JUDGE
     FILE_READ_IN
     FILE_READ_OUT
     #endif
-
+ 
     //######################
-
-    //cout<<0%2;
-    // br;
-    // br;
 
     int testCase;
     cin>>testCase;
 
     while(testCase--){
-        int a, b, c;
-        cin>>a>>b>>c;
-
-        int total = a + 2*b + 3*c;
-
-        if(total%2==0){
-            cout<<0;
-        }else{
-            cout<<1;
-        }
-        br;
-        
-
+        int n;
+        cin>>n;
+        n-=2;
+        int ans = n*(n+1);
+        ++ans;
+        cout<< ans<<"\n";
     }
 }
