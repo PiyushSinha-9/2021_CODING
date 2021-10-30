@@ -64,12 +64,7 @@ signed main() {
     #endif
 
     //######################
-
-   int testCase;
-   cin>>testCase;
-
-   while(testCase--){
-        
-   }
+    int tempn=24;
+   cout<<round((double)sqrt(tempn));
     
 }

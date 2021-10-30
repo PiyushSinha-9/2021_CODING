@@ -55,7 +55,9 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 
 //############################################################
 
-// #define int long long
+ #define int long long
+
+unordered_map<int,int> dp;
 
 signed main() {
     fast
@@ -65,11 +67,36 @@ signed main() {
 
     //######################
 
+    // int temp = 2;
+    // int value = 4;
+    // int counter = 2;
+    // int curCount = 0;
+    // int K =1e5+1;
+    
+    // while(K--){
+    //     dp[temp] = value;
+    //     temp+=1;
+    //     curCount+=1;
+    //     if(curCount == counter){
+    //         curCount=0;
+    //         value+=2;
+    //         counter++;
+    //     }
+    // }
+
+    //dbg(dp)
    int testCase;
    cin>>testCase;
-
+    int val =2;
    while(testCase--){
+       int n;
+       cin>>n;
+
+       int tempn=n;
+       tempn*=2;
+       int sol = round((double)sqrt(tempn));
         
+       cout<<sol*2;br;
    }
     
 }

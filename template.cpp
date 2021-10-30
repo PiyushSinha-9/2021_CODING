@@ -65,11 +65,5 @@ signed main() {
 
     //######################
 
-   int testCase;
-   cin>>testCase;
-
-   while(testCase--){
-        
-   }
     
 }

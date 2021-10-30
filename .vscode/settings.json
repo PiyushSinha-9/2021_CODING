@@ -9,6 +9,7 @@
         "stack": "cpp",
         "__tuple": "cpp",
         "array": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "chrono": "cpp"
     }
 }
