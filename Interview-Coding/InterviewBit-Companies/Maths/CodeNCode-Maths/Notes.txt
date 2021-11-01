@@ -307,11 +307,140 @@ Steps :
 
 Total Number of Common Divisors between N and K .... Finding in Log(N) time 
 
+Find Prime Factorization of N 
+whatever prime numbers are the in PF of N use those to get K mini b/w there power use those to 
+(p1+1)*(p2+1).. formula to get diviors
+For Example
+N = [(2,3),(3,2),(5,2)]
+K = [(2,2),(3,0),(5,1)]
+
+Common diviors will be (2+1) * (0+1) *(1+1) ; Note K might have some other prime factorization which 
+we can ignore as we have to find common.
+
+
+Find number of divisors of N which are multiple of K 
+
+LOWER BOUND KINDA
+Observation: Let d be multiple of K then all prime which exist in prime factorizationof K must also exist in d
+            and for each prime their power in d must be at least as much as in k
+
+K = 60 = [(2,2),(3,1),(5,1)]
+d = 180 => [(2,2),(3,2),(5,1)]
+
+this may happen that d might have other PF number what thats ok.  
+
+UPPER BOUND KINDA
+Observation: Let d is muliple of K and Divides N then
+             d can not have any prime which is not in N
+
+Example : d = 2*3*3*5
+          N = 2*3*3*7
+here d cannot divide N
+
+-: let prime P is present in d with cnt x, and in N with count y then 
+               x <= y, in other words y is upper bound 
+
+Example : d = 2*3*3*5
+          N = 2*3*3*5*5
 
 
 
+-------------------------------------------------------------------------------------
+
+Non-Deterministic Primality TestAlgorithms
+
+Reason for using Non-Deterministic Algorithm is very very lasrge number can not be solve conventially
+
+-> Fermat's & Miller-Rabin Test & Fermat(Deterministic Version)
+ 
+### Fermat Primality Test
+
+    a^(p-1) =(3) 1(mod p)
+    Chose a where
+    2 <= a <= P-2  and cal a^(p-1) here pay attention P = p-1 so a <= p-3
+
+    if res!=1
+    a is known as fermat witness for compositeness of P.
+
+    if res==1
+    P is known as probable PRIME  
+    To make it more probable USE 5-10  iternation 
+
+    SEE Cp-Algorithm site primality_tests
+
+THERE are such number which can cause difficulty for us which are known as Carmichael Numbers.
+
+If p is composite and for some a fermats little theorem holds then a is known as fermat liar and P in this case is known as
+Fermat PseudoPrime.
+
+Carmichael Numbers -: there are some numbers (example 561 = 3*11*17) which are composie but for each a such that GCD(a,P) = 1
+fermat little theroam holds. Very rare there is only 646 such number below 10^9.
 
 
+-------------------------------------------------------------------------------------
+
+### Miller-Rabin Test 
+
+a ^ (p-1)   =(3)  1(mod  p)
+
+For a given number n, we can write n-1 as 
+n-1 = 2^s . d, with d being odd number 
+
+7 = 2^0 * 7 
+36 = 2^2* 9
+
+fermal little theoram -: 
+a^n-1 =(3) 1 mod n
+n-1 = 2^s*d
+replace  n above value in above to above value.
+
+(a^((2^(s-1))*d) +1) * (a^((2^(s-2))*d) +1) ... (a^(d) +1) (a^(d) -1)  =(3) 0 mod n
+IF N is prime it must divide any one of the above value.
+
+-> No Carmichael Numbers are there 
+
+-> Deterministic Version of this for 32 check with first 4 Prime number and for 64 bit check with first 12 Prime Number.
+
+-------------------------------------------------------------------------------------
+
+## Extended Euclidean Algorithm :
+    Bezout lemma can be used to proof that there exist a solution for such equation always. 
+    ax + by = gcd(a,b)
+    Find x and y -: Given 2 integers a(57) and b(81), find soltuion (x,y) of the equation ax+ by =GCD(a,b)
+
+    Applications -: 
+    GCD -: Noramal GCD can also be find through this but simple Euclidean Algo is easy.
+    Finding Modulo Inverse -: 
+    Solution of LDE (Linear Diophantine Equation)- : Most Important Application 
+
+    -> Deriving the Recurrence Formula 
+    -> Using Iterative Apprach
+
+    Watch CodeNCode
+    https://cp-algorithms.com/algebra/extended-euclid-algorithm.html
+
+-------------------------------------------------------------------------------------
+
+## Linear Diophantine equations
+    what are these
+    Finding a solution of a given LDA
+    getting genral soltuion
+    Finding number of Solution in a given range
+    Finding soltuion with minimum x+Y
 
 
+    ax + by = c
+    The Degenerate Case 
+    We need to take care of the case where a=b=0 
+    There are 2 sub cases
 
+    SubCase1 
+    when c= 0
+    solution : INF 
+
+    SubCase 2 
+    when c!=0
+    soltuion : 0
+
+
+-------------------------------------------------------------------------------------
