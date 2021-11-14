@@ -1,0 +1,5 @@
+1
+6 2
+abaaba
+L a 1
+S a 3
